@@ -1,4 +1,4 @@
 {
-    "token": "hidden",
+    "token": BOT_TOKEN,
     "prefix": "!"
 }
