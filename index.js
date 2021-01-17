@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 //подключаем файл конфигурации
 let config = require('./botconfig.json');
 //"достаём" токен и префикс
-let token = TOKEN_BOT;
+let token = config.token;
 let prefix = config.prefix;
 var state = false;
 
