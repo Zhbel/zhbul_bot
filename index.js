@@ -3,7 +3,6 @@ const bot = new Discord.Client();
 //подключаем файл конфигурации
 let config = require('./botconfig.json');
 //"достаём" токен и префикс
-let token = config.token;
 let prefix = config.prefix;
 var state = false;
 
@@ -681,4 +680,4 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
     }
 })
 
-bot.login(token);
+bot.login(process.env.BOT_TOKEN);
