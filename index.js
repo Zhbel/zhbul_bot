@@ -7,6 +7,8 @@ let token = config.token;
 let prefix = config.prefix;
 var state = false;
 
+let admin_channel = '730442292233765014';
+
 let mainGang = [
     { username: 'Zhbul', id: '268076962973483009' },
     { username: 'Ilya', id: '356377478018629633' },
@@ -44,6 +46,7 @@ bot.on('ready', () => {
 bot.on('message', msg => {
     if (msg.content === prefix + 'help') {
         msg.reply(`
+        Команды бота работают только в канале управления
         !help - Помощь
         !start - Запуск ботяры
         !stop - Остановка ботяры
@@ -52,8 +55,11 @@ bot.on('message', msg => {
         ------------------------------
         Голосовые команды:
         !sorry
+        !3x
         !cxc
+        !vote
         !dada9
+        !neponyal
         !perhot
         !granta
         !kazino
@@ -62,6 +68,7 @@ bot.on('message', msg => {
         ------------------------------
         Текcтовый кринж:
         !bamboocho
+        !Vaseka
         !Oleg
         !Ilya
         `);
@@ -70,6 +77,10 @@ bot.on('message', msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'start') {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         state = true;
         bot.user.setPresence({
             status: 'available',
@@ -157,6 +168,11 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'stop') {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
+
         state = false;
         bot.user.setPresence({
             status: 'available',
@@ -216,6 +232,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'sorry' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/sorry.mp3', { volume: 1 });
@@ -230,8 +250,34 @@ bot.on('message', async msg => {
     } else if (msg.content === prefix + 'sorry') msg.reply('Включи ботяру');
 });
 
+
+bot.on('message', async msg => {
+    if (msg.content === prefix + 'neponyal' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
+
+        if (msg.member.voice.channel) {
+            msg.member.voice.channel.join().then(connection => {
+                const dispatcher = connection.play('audio/micro.mp3', { volume: 0.8 });
+                dispatcher.on("speaking", (speaking) => {
+                    if (!speaking) {
+
+                        msg.member.voice.channel.leave();
+                    }
+                });
+            });
+        } else if (msg.content === prefix + 'neponyal') msg.reply('Прыгни в канал, потом командуй, фраер');
+    } else if (msg.content === prefix + 'neponyal') msg.reply('Включи ботяру');
+});
+
 bot.on('message', async msg => {
     if (msg.content === prefix + 'granta' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 var dispatcher = connection.play('audio/GyrocopterYes2.wav', { volume: 0.7 });
@@ -259,6 +305,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'perhot' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/perhot.mp3', { volume: 0.5 });
@@ -273,8 +323,34 @@ bot.on('message', async msg => {
     } else if (msg.content === prefix + 'perhot') msg.reply('Включи ботяру');
 });
 
+
+bot.on('message', async msg => {
+    if (msg.content === prefix + '3x' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
+        if (msg.member.voice.channel) {
+            msg.member.voice.channel.join().then(connection => {
+                const dispatcher = connection.play('audio/BloodElfEngineerWhat3.wav', { volume: 0.6 });
+                dispatcher.on("speaking", (speaking) => {
+                    if (!speaking) {
+
+                        msg.member.voice.channel.leave();
+                    }
+                });
+            });
+        } else if (msg.content === prefix + '3x') msg.reply('Прыгни в канал, потом командуй, фраер');
+    } else if (msg.content === prefix + '3x') msg.reply('Включи ботяру');
+});
+
+
 bot.on('message', async msg => {
     if (msg.content === prefix + 'kazino' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/kazino.mp3', { volume: 0.5 });
@@ -291,6 +367,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'probitie' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/probit.m4a', { volume: 0.5 });
@@ -307,6 +387,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'cxc' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/cxc.mp3', { volume: 0.9 });
@@ -323,6 +407,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'kakoy' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/lya.mp3', { volume: 0.5 });
@@ -339,6 +427,10 @@ bot.on('message', async msg => {
 
 bot.on('message', async msg => {
     if (msg.content === prefix + 'dada9' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
                 const dispatcher = connection.play('audio/dada9.mp3', { volume: 0.7 });
@@ -353,8 +445,32 @@ bot.on('message', async msg => {
     } else if (msg.content === prefix + 'dada9') msg.reply('Включи ботяру');
 });
 
+bot.on('message', async msg => {
+    if (msg.content === prefix + 'vote' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
+        if (msg.member.voice.channel) {
+            msg.member.voice.channel.join().then(connection => {
+                const dispatcher = connection.play('audio/vote.mp3', { volume: 0.7 });
+                dispatcher.on("speaking", (speaking) => {
+                    if (!speaking) {
+
+                        msg.member.voice.channel.leave();
+                    }
+                });
+            });
+        } else if (msg.content === prefix + 'vote') msg.reply('Прыгни в канал, потом командуй, фраер');
+    } else if (msg.content === prefix + 'vote') msg.reply('Включи ботяру');
+});
+
 bot.on('message', msg => {
     if (msg.content === prefix + 'bamboocho' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         msg.reply('Усатое ЧМЁ!');
         if (msg.member.voice.channel) {
             msg.member.voice.channel.join().then(connection => {
@@ -371,13 +487,42 @@ bot.on('message', msg => {
 });
 
 bot.on('message', msg => {
+    if (msg.content === prefix + 'Vaseka' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
+        msg.reply('Васека Дрынк!');
+        if (msg.member.voice.channel) {
+            msg.member.voice.channel.join().then(connection => {
+                const dispatcher = connection.play('audio/Vaseka.mp3', { volume: 0.8 });
+                dispatcher.on("speaking", (speaking) => {
+                    if (!speaking) {
+
+                        msg.member.voice.channel.leave();
+                    }
+                });
+            });
+        }
+    } else if (msg.content === prefix + 'Vaseka') msg.reply('Включи ботяру');
+});
+
+bot.on('message', msg => {
     if (msg.content === prefix + 'Oleg' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         msg.reply('Гвардии рядовой!');
     } else if (msg.content === prefix + 'Oleg') msg.reply('Включи ботяру');
 });
 
 bot.on('message', msg => {
     if (msg.content === prefix + 'Ilya' && state == true) {
+        if (msg.channel.id != admin_channel && msg.author.id != bot.user.id) {
+            msg.reply('Управление ботярой доступно только арийской расе');
+            return;
+        }
         msg.reply('ASSPyrant');
     } else if (msg.content === prefix + 'Ilya') msg.reply('Включи ботяру');
 });
@@ -391,7 +536,9 @@ bot.on('message', msg => {
 
 bot.on('message', msg => {
     if (msg.content === prefix + 'us' && state == true) {
-        var role = msg.guild.roles.cache.find(role => role.id === '800275702800580659');
+        800367097603424256
+        // var role = msg.guild.roles.cache.find(role => role.id === '800275702800580659');
+        var role = msg.guild.roles.cache.find(role => role.id === '800367097603424256');
         msg.channel.send("<@&" + role.id + "> Го в Усачей");
     } else if (msg.content === prefix + 'us') msg.reply('Включи ботяру');
 });
@@ -417,10 +564,13 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
         const channel = bot.channels.cache.get(newUserChannel);
         var connectedUser = newState.id;
         var dispatcher;
+        var greet = getRandomInt(2);
+        if (greet == 1) connectedUser = 0;
         channel.join().then(connection => {
             switch (connectedUser) {
                 case mainGang[0].id:
-                    dispatcher = connection.play('audio/Dungeon_master.mp3', { volume: 0.7 });
+
+                    dispatcher = connection.play('audio/AcolyteWhat2.wav', { volume: 0.7 });
                     dispatcher.on("speaking", (speaking) => {
                         if (!speaking) {
 
@@ -440,7 +590,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
                     break;
 
                 case mainGang[2].id:
-                    dispatcher = connection.play('audio/AcolyteWhat2.wav', { volume: 0.7 });
+                    dispatcher = connection.play('audio/Oleg.mp3', { volume: 0.7 });
                     dispatcher.on("speaking", (speaking) => {
                         if (!speaking) {
 
@@ -450,7 +600,7 @@ bot.on('voiceStateUpdate', (oldState, newState) => {
                     break;
 
                 case mainGang[3].id:
-                    dispatcher = connection.play('audio/Vaseka.mp3', { volume: 0.7 });
+                    dispatcher = connection.play('audio/vasya_in.mp3', { volume: 0.6 });
                     dispatcher.on("speaking", (speaking) => {
                         if (!speaking) {
 
